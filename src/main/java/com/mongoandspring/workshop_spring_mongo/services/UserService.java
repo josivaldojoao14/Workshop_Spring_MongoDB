@@ -40,11 +40,10 @@ public class UserService {
 		updateData(newObj, user);
 		return repository.save(newObj);
 	}
-
+	
 	private void updateData(User newObj, User user) {
 		newObj.setName(user.getName());
-		newObj.setEmail(user.getEmail());
-		
+		newObj.setEmail(user.getEmail());	
 	}
 	
 	public User fromDto(UserDTO objDto) {

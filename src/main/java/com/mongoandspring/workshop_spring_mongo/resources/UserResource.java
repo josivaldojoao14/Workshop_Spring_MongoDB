@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.mongoandspring.workshop_spring_mongo.domain.Post;
 import com.mongoandspring.workshop_spring_mongo.domain.User;
 import com.mongoandspring.workshop_spring_mongo.dto.UserDTO;
+import com.mongoandspring.workshop_spring_mongo.resources.util.URL;
 import com.mongoandspring.workshop_spring_mongo.services.UserService;
 
 @RestController
@@ -67,5 +69,12 @@ public class UserResource {
 	public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
 		User obj = service.findById(id);
 		return ResponseEntity.ok().body(obj.getPosts());
+	}
+	
+	@GetMapping(value = "/findByEmail")
+	public ResponseEntity<UserDTO> findByEmail(@RequestParam(value = "email") String email){
+		email = URL.decodeParam(email);
+		User obj = service.findByEmail(email);
+		return ResponseEntity.ok().body(new UserDTO(obj));
 	}
 }

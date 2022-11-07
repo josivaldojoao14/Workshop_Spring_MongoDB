@@ -41,6 +41,10 @@ public class UserService {
 		return repository.save(newObj);
 	}
 	
+	public User findByEmail(String email) {
+		return repository.findByEmail(email);
+	}
+	
 	private void updateData(User newObj, User user) {
 		newObj.setName(user.getName());
 		newObj.setEmail(user.getEmail());	

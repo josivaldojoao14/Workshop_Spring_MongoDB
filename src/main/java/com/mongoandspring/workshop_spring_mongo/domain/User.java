@@ -16,6 +16,7 @@ public class User implements Serializable {
 	private String id;
 	private String name;
 	private String email;
+	private String password;
 	
 	@DBRef(lazy = true)
 	private List<Post> posts = new ArrayList<>();
@@ -59,6 +60,14 @@ public class User implements Serializable {
 
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Override

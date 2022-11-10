@@ -6,6 +6,6 @@ import org.springframework.data.mongodb.repository.Query;
 import com.mongoandspring.workshop_spring_mongo.domain.Role;
 
 public interface RoleRepository extends MongoRepository<Role, String>{
-	@Query("{ 'username' : ?0 }")
+	@Query("{ 'roleName' : ?0 }")
 	Role findByName(String name);
 }

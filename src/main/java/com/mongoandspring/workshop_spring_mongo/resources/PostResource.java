@@ -16,32 +16,32 @@ import com.mongoandspring.workshop_spring_mongo.resources.util.URL;
 import com.mongoandspring.workshop_spring_mongo.services.PostService;
 
 @RestController
-@RequestMapping(value = "/posts")
+@RequestMapping(value = "/api")
 public class PostResource {
 
 	@Autowired
 	private PostService postService;
 
-	@GetMapping
+	@GetMapping(value = "/posts")
 	public ResponseEntity<List<Post>> findAll() {
 		List<Post> posts = postService.findAll();
 		return ResponseEntity.ok().body(posts);
 	}
 
-	@GetMapping(value = "/{id}")
+	@GetMapping(value = "/post/{id}")
 	public ResponseEntity<Post> findById(@PathVariable String id) {
 		Post post = postService.findById(id);
 		return ResponseEntity.ok().body(post);
 	}
 
-	@GetMapping(value = "/titlesearch")
+	@GetMapping(value = "/post/titlesearch")
 	public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text", defaultValue = "") String text) {
 		text = URL.decodeParam(text);
 		List<Post> posts = postService.findByTitle(text);
 		return ResponseEntity.ok().body(posts);
 	}
 
-	@GetMapping(value = "/fullsearch")
+	@GetMapping(value = "/post/fullsearch")
 	public ResponseEntity<List<Post>> fullSearch(@RequestParam(value = "text", defaultValue = "") String text,
 			@RequestParam(value = "minDate", defaultValue = "") String minDate,
 			@RequestParam(value = "maxDate", defaultValue = "") String maxDate) {

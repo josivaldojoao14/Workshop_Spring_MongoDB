@@ -8,7 +8,7 @@ import com.mongoandspring.workshop_spring_mongo.domain.User;
 public interface UserService {
 	List<User> findAll();
 	User findById(String id);
-	User insert(User user);
+	User saveUser(User user);
 	void delete(String id);
 	User update(User user);
 	User findByEmail(String email);

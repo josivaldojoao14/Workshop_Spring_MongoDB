@@ -111,6 +111,7 @@ public class UserServiceImpl implements UserService, UserDetailsService{
 	
 	private void updateData(User newObj, User user) {
 		newObj.setName(user.getName());
-		newObj.setEmail(user.getEmail());	
+		newObj.setEmail(user.getEmail());
+		newObj.setPosts(user.getPosts());
 	}	
 }

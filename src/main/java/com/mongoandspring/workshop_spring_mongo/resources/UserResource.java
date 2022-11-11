@@ -24,7 +24,7 @@ import com.mongoandspring.workshop_spring_mongo.domain.User;
 import com.mongoandspring.workshop_spring_mongo.dto.RoleDTO;
 import com.mongoandspring.workshop_spring_mongo.dto.UserDTO;
 import com.mongoandspring.workshop_spring_mongo.resources.util.URL;
-import com.mongoandspring.workshop_spring_mongo.services.UserService;
+import com.mongoandspring.workshop_spring_mongo.services.UserServiceImpl;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +34,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping(value = "/api")
 public class UserResource {
 	@Autowired
-	private final UserService service;
+	private final UserServiceImpl service;
 	
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
 	@GetMapping(value="/users")

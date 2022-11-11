@@ -17,7 +17,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Document
-@Data @NoArgsConstructor @AllArgsConstructor @Builder
+@Data 
+@NoArgsConstructor @AllArgsConstructor @Builder
 public class Post implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -28,7 +29,7 @@ public class Post implements Serializable{
 	private String body;
 	private AuthorDTO author;
 	
-	private final List<CommentDTO> comments = new ArrayList<>();
+	private List<CommentDTO> comments = new ArrayList<>();
 	
 	public AuthorDTO getAuthor() {
 		return author;
@@ -37,4 +38,5 @@ public class Post implements Serializable{
 	public void setAuthor(AuthorDTO author) {
 		this.author = author;
 	}
+	
 }

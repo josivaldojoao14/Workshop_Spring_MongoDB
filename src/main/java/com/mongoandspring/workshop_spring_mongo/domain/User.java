@@ -11,12 +11,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Document(collection = "user") 
-@Data @NoArgsConstructor @AllArgsConstructor
+@Data @NoArgsConstructor
 public class User implements UserDetails, Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -28,10 +27,18 @@ public class User implements UserDetails, Serializable {
 	private String password;
 	
 	private List<Role> roles = new ArrayList<>();
-	
 	@DBRef(lazy = true)
 	private List<Post> posts = new ArrayList<>();
 
+	public User(String id, String name, String email, String username, String password) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.username = username;
+		this.password = password;
+	}
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return this.roles;

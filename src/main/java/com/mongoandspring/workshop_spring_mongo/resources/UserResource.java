@@ -19,9 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.mongoandspring.workshop_spring_mongo.domain.Post;
-import com.mongoandspring.workshop_spring_mongo.domain.Role;
 import com.mongoandspring.workshop_spring_mongo.domain.User;
-import com.mongoandspring.workshop_spring_mongo.dto.RoleDTO;
 import com.mongoandspring.workshop_spring_mongo.dto.UserDTO;
 import com.mongoandspring.workshop_spring_mongo.resources.util.URL;
 import com.mongoandspring.workshop_spring_mongo.services.UserServiceImpl;
@@ -96,16 +94,7 @@ public class UserResource {
 		User obj = service.findByUsername(username);
 		return ResponseEntity.ok().body(new UserDTO(obj));
 	}
-	
-	@PostMapping(value = "/role/save")
-	public ResponseEntity<RoleDTO> saveRole(@RequestBody RoleDTO objDto){
-		Role obj = new Role();
-		BeanUtils.copyProperties(objDto, obj);
-		obj = service.saveRole(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-		return ResponseEntity.created(uri).build();
-	}
-	
+
 	@PostMapping(value = "/role/addToUser")
 	public ResponseEntity<?> addRoleToUser(@RequestBody RoleToUserForm form){
 		service.addRoleToUser(form.getUsername(), form.getRoleName());
